@@ -4,6 +4,7 @@ Feature: ALTA QE BATCH 12
     Given Get list user with valid parameter page <page>
     When Send request get list
     Then Status code should be 200 OK
+    And Respon body page should be <page>
     Examples:
       | page |
       | 1    |
@@ -34,6 +35,8 @@ Feature: ALTA QE BATCH 12
       | id |
     |    2|
     |     4|
+
+
 
 
 

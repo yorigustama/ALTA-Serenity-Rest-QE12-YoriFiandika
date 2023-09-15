@@ -1,13 +1,17 @@
 package starter.stepdef;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.junit.annotations.Concurrent;
 import starter.reqres.PostCreateUser;
+import starter.reqres.ReqresResponses;
 import starter.utils.Constants;
+import static org.hamcrest.Matchers.equalTo;
 
 import java.io.File;
 
@@ -32,9 +36,24 @@ public class PostCreateUserStepDef {
     public void statusCodeShouldBeCreated(int created) {
         SerenityRest.then().statusCode(created);
     }
+    @And("Respon body name was {string} and job was {string}")
+    public void responBodyNameWasAndJobWas(String name, String job) {
+        SerenityRest.and().body(ReqresResponses.NAME,equalTo(name));
+        SerenityRest.and().body(ReqresResponses.JOB,equalTo(job));
+    }
+    @And("Validate post create user JSON schema {string}")
+    public void validatePostCreateUserJSONSchema(String jsonFile) {
+        File json = new File(Constants.JSON_SCHEMA+jsonFile);
+        SerenityRest.and()
+                .assertThat()
+                .body(JsonSchemaValidator.matchesJsonSchema(json));
+    }
 
     @Then("Status code should be {int} bad request")
     public void statusCodeShouldBeBadRequest(int badRequest) {
         SerenityRest.then().statusCode(badRequest);
     }
+
+
+
 }
