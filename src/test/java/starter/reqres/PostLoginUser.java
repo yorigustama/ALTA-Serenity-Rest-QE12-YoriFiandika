@@ -7,11 +7,11 @@ import starter.utils.Constants;
 
 import java.io.File;
 
-public class PostRegister {
-    public static String POST_REGISTER = Constants.BASE_URL+"/api/register";
+public class PostLoginUser {
+    public static String POST_LOGIN = Constants.BASE_URL+"/api/login";
 
-    @Step("Post register user")
-    public void setPostRegister(File json){
+    @Step("Post login user")
+    public void setPostLogin(File json){
         SerenityRest
                 .given()
                 .contentType(ContentType.JSON)

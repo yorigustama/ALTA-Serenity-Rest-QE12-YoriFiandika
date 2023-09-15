@@ -29,4 +29,6 @@ public class PostRegisterStepDef {
         File json = new File(Constants.REQ_BODY_POSTREGISTER+jsonFile);
         postRegister.setPostRegister(json);
     }
+
+
 }

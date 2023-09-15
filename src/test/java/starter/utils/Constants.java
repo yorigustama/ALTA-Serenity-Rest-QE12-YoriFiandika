@@ -14,6 +14,7 @@ public class Constants {
     public static String REQ_BODY_POSTREGISTER = JSON+"/ReqBody/PostRegister/";
     public static String REQ_BODY_PATCHUPDATEUSER = JSON+"/ReqBody/PatchUpdateUser/";
     public static String JSON_SCHEMA = JSON+"/JSONSchema/";
+    public static String REQ_BODY_POSTLOGINUSER = JSON+"/ReqBody/PostLoginUser/";
 
 
 }

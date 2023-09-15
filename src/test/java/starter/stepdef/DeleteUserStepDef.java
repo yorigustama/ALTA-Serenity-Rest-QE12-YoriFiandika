@@ -24,4 +24,9 @@ public class DeleteUserStepDef {
     public void statusCodeShouldBeNoContent(int noContent) {
         SerenityRest.then().statusCode(noContent);
     }
+
+    @Given("Delete a user with invalid user id {int}")
+    public void deleteAUserWithInvalidUserId(int id) {
+        deleteUser.setDeleteUser(id);
+    }
 }

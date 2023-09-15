@@ -8,3 +8,12 @@ Feature: ALTA QE BATCH 12
     | id |
     | 2  |
     | 4  |
+
+    Scenario Outline: Delete a user with invalid user id
+      Given Delete a user with invalid user id <id>
+      When Send request delete user
+      Then Status code should be 400 bad request
+      Examples:
+        | id        |
+        | 1212121   |
+        | 121212123 |
