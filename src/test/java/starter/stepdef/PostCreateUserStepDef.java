@@ -55,5 +55,9 @@ public class PostCreateUserStepDef {
     }
 
 
-
+    @And("Validate post create JSON schema {string}")
+    public void validatePostCreateJSONSchema(String jsonFile) {
+        File json = new File(Constants.JSON_SCHEMA+jsonFile);
+        SerenityRest.and().assertThat().body(JsonSchemaValidator.matchesJsonSchema(json));
+    }
 }

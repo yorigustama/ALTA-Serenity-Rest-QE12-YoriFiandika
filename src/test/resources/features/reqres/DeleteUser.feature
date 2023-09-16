@@ -1,5 +1,6 @@
+
 Feature: ALTA QE BATCH 12
-  @Tugas
+ @Latihan
   Scenario Outline: Delete a user with valid user id
   Given Delete a user with valid user id <id>
   When Send request delete user
@@ -8,7 +9,7 @@ Feature: ALTA QE BATCH 12
     | id |
     | 2  |
     | 4  |
-
+  @Tugas
     Scenario Outline: Delete a user with invalid user id
       Given Delete a user with invalid user id <id>
       When Send request delete user

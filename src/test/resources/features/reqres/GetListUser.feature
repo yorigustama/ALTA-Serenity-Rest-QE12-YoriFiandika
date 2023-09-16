@@ -1,6 +1,6 @@
 Feature: ALTA QE BATCH 12
 
-  @Tugas
+  @Latihan
   Scenario Outline: Get list user with valid parameter page
     Given Get list user with valid parameter page <page>
     When Send request get list
