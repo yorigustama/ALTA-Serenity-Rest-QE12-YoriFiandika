@@ -8,9 +8,12 @@ import io.restassured.module.jsv.JsonSchemaValidator;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Steps;
 import starter.reqres.PutUpdateUser;
+import starter.reqres.ReqresResponses;
 import starter.utils.Constants;
 
 import java.io.File;
+
+import static org.hamcrest.Matchers.equalTo;
 
 public class PutUpdateUserStepDef {
     @Steps
@@ -33,7 +36,11 @@ public class PutUpdateUserStepDef {
                 .assertThat()
                 .body(JsonSchemaValidator.matchesJsonSchema(json));
     }
-
+    @And("Respon body name was {string} and job was {string}")
+    public void responBodyNameWasAndJobWas(String name, String job) {
+        SerenityRest.and().body(ReqresResponses.NAME,equalTo(name));
+        SerenityRest.and().body(ReqresResponses.JOB,equalTo(job));
+    }
 
 
     @Given("Update user with invalid json {string} and user id {int}")

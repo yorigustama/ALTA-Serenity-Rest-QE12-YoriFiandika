@@ -36,11 +36,7 @@ public class PostCreateUserStepDef {
     public void statusCodeShouldBeCreated(int created) {
         SerenityRest.then().statusCode(created);
     }
-    @And("Respon body name was {string} and job was {string}")
-    public void responBodyNameWasAndJobWas(String name, String job) {
-        SerenityRest.and().body(ReqresResponses.NAME,equalTo(name));
-        SerenityRest.and().body(ReqresResponses.JOB,equalTo(job));
-    }
+
     @And("Validate post create user JSON schema {string}")
     public void validatePostCreateUserJSONSchema(String jsonFile) {
         File json = new File(Constants.JSON_SCHEMA+jsonFile);

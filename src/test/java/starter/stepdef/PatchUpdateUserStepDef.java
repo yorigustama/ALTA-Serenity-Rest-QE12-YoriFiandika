@@ -7,7 +7,10 @@ import io.restassured.module.jsv.JsonSchemaValidator;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Steps;
 import starter.reqres.PatchUpdateUser;
+import starter.reqres.ReqresResponses;
 import starter.utils.Constants;
+
+import static org.hamcrest.Matchers.equalTo;
 
 import java.io.File;
 
@@ -27,11 +30,21 @@ public class PatchUpdateUserStepDef {
     public void sendRequestPatchUpdateUser() {
         SerenityRest.when().patch(PatchUpdateUser.PATCH_UPDATE_USER);
     }
+    @And("Respon body patch name was {string} and job was {string}")
+    public void responBodyPatchNameWasAndJobWas(String name, String job) {
+        SerenityRest.and().body(ReqresResponses.NAME,equalTo(name));
+        SerenityRest.and().body(ReqresResponses.JOB,equalTo(job));
+    }
+
 
     @Given("Update user patch without job field invalid json {string} and user id {int}")
     public void updateUserPatchWithoutJobFieldInvalidJsonAndUserId(String jsonFile, int id) {
         File json = new File(Constants.REQ_BODY_PATCHUPDATEUSER + jsonFile);
         patchUpdateUser.setPatchUpdateUser(json, id);
+    }
+    @And("Respon body patch update without job was {string}")
+    public void responBodyPatchUpdateWithoutJobWas(String name) {
+        SerenityRest.and().body(ReqresResponses.NAME,equalTo(name));
     }
 
     @Given("Update user patch without name field invalid json {string} and user id {int}")
@@ -47,6 +60,11 @@ public class PatchUpdateUserStepDef {
                 .and()
                 .assertThat()
                 .body(JsonSchemaValidator.matchesJsonSchema(json));
+    }
+
+    @And("Respon body patch update without name was {string}")
+    public void responBodyPatchUpdateWithoutNameWas(String job) {
+        SerenityRest.and().body(ReqresResponses.JOB,equalTo(job));
     }
 }
 
